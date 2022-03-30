@@ -12,11 +12,14 @@ bot = telebot.TeleBot(apikey, parse_mode=None)
 @bot.message_handler(commands='start')
 def start(m):
   subscribe = [[InlineKeyboardButton('Subscribe to E-News!', url='t.me/enewssg')]]
-  bot.send_message(m.chat.id, 'Hi there! This bot helps you to contact E-News administrators. You can leave a message below to contact them.', reply_markup=InlineKeyboardMarkup(subscribe))
+  bot.send_message(m.chat.id, 'Hi there! This bot helps you to contact E-News administrators. You can leave a message below to contact them!\n Not too sure what to do? You can run the /help command!', reply_markup=InlineKeyboardMarkup(subscribe))
 
 @bot.message_handler(commands='help')
 def help(m):
-  bot.send_message(m.chat.id, 'TestValue.', reply_markup=InlineKeyboardMarkup(subscribe))
+  status = [[InlineKeyboardButton('See bot status',url='https://botstatus.enews.link/')]]
+  bot.send_message(m.chat.id, "Welcome to the help menu. There is really only one command on this bot, its /start. Run start, and then type a message below. That message will be sent to the team, and we will reply as soon as we can. \n If the bot is not working, you can click below to check out the status.", reply_markup=InlineKeyboardMarkup(status))
+  bot.send_message(m.chat.id,"By the way, if you are trying to find our channels, we have linked them below.\n t.me/enewssg\n t.me/enewslounge ")
+  
 
 @bot.message_handler(commands='reply')
 def reply(m):
